@@ -2,21 +2,32 @@ var express = require('express');
 var app = express()
 app.use('/tictactoe', express.static(__dirname + '/main'));
 socket = require('socket.io');
+var config = require('./config');
 
 
 
-
-var port = process.env.OPENSHIFT_NODEJS_PORT  || 8080;
+var port = config.serverport;
 /* app.listen(port, function() {
   //console.log("Express server listening on port %d", app.address().port); 
 }); */
-
+/* 
 var listener = app.listen( port, function(){
     console.log('Listening on port ' + listener.address().port); //Listening on port 8888
     console.log('/tictactoe'); //Handler
-	
-	
 });
+
+ */
+
+
+
+/* console.log("Trying to start server with config:", config.serverip + ":" + config.serverport);
+ */
+// Both port and ip are needed for the OpenShift, otherwise it tries 
+// to bind server on IP 0.0.0.0 (or something) and fails
+/* server.listen(config.serverport, config.serverip, function() {
+  console.log("Server running @ http://" + config.serverip + ":" + config.serverport);
+});
+ */
 
 
 
@@ -149,6 +160,6 @@ var leaveTable = function (socket) {
     }
 };
 
-http.listen(3000, function () {
-    console.log('listening on *:3000');
+http.listen(port, function () {
+    console.log('listening on *:'+port);
 });
