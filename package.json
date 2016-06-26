@@ -24,8 +24,8 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
-        "socket.io": "latest",
-        "express": "latest"
+    "socket.io":  "~1.0.1",
+    "express":    "~4.10.7"
   },
   "devDependencies": {},
   "bundleDependencies": [],
