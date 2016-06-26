@@ -1,8 +1,8 @@
-var express = require('express');
+/* var express = require('express');
 var app = express()
 //app.use('/tictactoe', express.static(__dirname + '/main'));
 socket = require('socket.io');
-
+ */
 
 
 
@@ -26,9 +26,9 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 }); */
 
 
-app.get('/', function (req, res) {
+/* app.get('/', function (req, res) {
 res.send('Listening on port ' + port);
-})
+}) */
 
 
 var http = require('http').Server(function (req, res) {
