@@ -1,6 +1,3 @@
-// Check the configuration file for more details
-var config = require('./config');
-
 var express = require('express');
 var app = express()
 app.use('/tictactoe', express.static(__dirname + '/main'));
@@ -12,16 +9,21 @@ socket = require('socket.io');
 /*var port = process.env.PORT || 8080;
  app.listen(port, function() {
   //console.log("Express server listening on port %d", app.address().port); 
-}); */
+});
 
 var listener = app.listen( config.serverport, function(){
     console.log('Listening on port ' + listener.address().port); //Listening on port 8888
     console.log('/tictactoe'); //Handler
-	
-	
 });
+ */
 
-
+ 
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var listener = app.listen(port, ipaddress, function() {
+    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
+    console.log('/tictactoe'); //Handler
+});
 
 var http = require('http').Server(function (req, res) {
     res.writeHead(301, {
