@@ -1,22 +1,36 @@
+// Check the configuration file for more details
+var config = require('./config');
+
+// Express.js stuff
 var express = require('express');
-var app = express()
-app.use('/tictactoe', express.static(__dirname + '/main'));
-socket = require('socket.io');
+var app = require('express')();
+var server = require('http').Server(app);
 
+// Websockets with socket.io
+var io = require('socket.io')(server);
 
+console.log("Trying to start server with config:", config.serverip + ":" + config.serverport);
 
-
-var port = process.env.PORT || 8080;
-/* app.listen(port, function() {
-  //console.log("Express server listening on port %d", app.address().port); 
-}); */
-
-var listener = app.listen( port, function(){
-    console.log('Listening on port ' + listener.address().port); //Listening on port 8888
-    console.log('/tictactoe'); //Handler
-	
-	
+// Both port and ip are needed for the OpenShift, otherwise it tries 
+// to bind server on IP 0.0.0.0 (or something) and fails
+server.listen(config.serverport, config.serverip, function() {
+  console.log("Server running @ http://" + config.serverip + ":" + config.serverport);
 });
+
+// Allow some files to be server over HTTP
+app.use(express.static(__dirname + '/main'));
+
+// Serve GET on http://domain/
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/main/index.html');
+});
+
+// Server GET on http://domain/api/config
+// A hack to provide client the system config
+app.get('/api/config', function(req, res) {
+  res.send('var config = ' + JSON.stringify(config));
+});
+
 
 
 
