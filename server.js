@@ -1,4 +1,4 @@
-// Check the configuration file for more details
+//  Check the configuration file for more details
 var config = require('./config');
 
 // Express.js stuff
