@@ -13,16 +13,16 @@ console.log("Trying to start server with config:", config.serverip + ":" + confi
 
 // Both port and ip are needed for the OpenShift, otherwise it tries 
 // to bind server on IP 0.0.0.0 (or something) and fails
-/* server.listen(config.serverport, config.serverip, function() {
+ server.listen(config.serverport, config.serverip, function() {
   console.log("Server running @ http://" + config.serverip + ":" + config.serverport);
-}); */
+});/* */
 
 // Allow some files to be server over HTTP
 app.use(express.static(__dirname + '/main'));
 
 // Serve GET on http://domain/
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/main/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 // Server GET on http://domain/api/config
@@ -34,14 +34,14 @@ app.get('/api/config', function(req, res) {
 
 
 
-var http = require('http').Server(function (req, res) {
+/* var http = require('http').Server(function (req, res) {
     res.writeHead(301, {
         "location": "http://localhost"
     });
     res.end();
-});
+}); */
 
-var io = require('socket.io')(http);
+//var io = require('socket.io')(http);
 var Table = require('./_table.js');
 
 var waitingQueue = [];
@@ -163,6 +163,6 @@ var leaveTable = function (socket) {
     }
 };
 
-http.listen(config.serverport, function () {
+/* http.listen(config.serverport, function () {
     console.log('listening on *:'+config.serverport);
-});
+}); */
