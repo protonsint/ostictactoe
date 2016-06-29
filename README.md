@@ -1,4 +1,4 @@
-# socketio-openshift-example
+ # socketio-openshift-example
 
 OpenShift websocket support demystified for application developers. This example app can be run locally on your own dev machine and in the OpenShift cloud. This example utilizes the [express.js](http://expressjs.com/) and [socket.io](http://socket.io/) libraries in [node.js](http://nodejs.org/). See the [config.js](https://github.com/nodebooks/socketio-openshift-example/blob/master/config.js) for the details for OpenShift.
 
